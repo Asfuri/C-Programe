@@ -30,7 +30,7 @@ void lerTam(FILE *arquivo, int *tam, Task **ArrayTasks) {
 
       *ArrayTasks = (Task *)realloc(*ArrayTasks, (numTarefas + 1) * sizeof(Task));
       if (*ArrayTasks == NULL) {
-        printf("Erro ao realocar memÃ³ria\n");
+        printf("Erro ao realocar memória\n");
         exit(1);
       }
 
@@ -48,19 +48,19 @@ FILE* novoTodo(FILE *toDo, int *tam, Task **ArrayTasks) {
     char *titulo, *subTitulo, *descricaoToDo;
     printf("Inicializando arquivo!\n");
     toDo = fopen("tasks.md", "w+");
-    printf("Digite o tÃ­tulo: ");
+    printf("Digite o título: ");
     scanf("%m[^\n]", &titulo);
     printf("Digite o subtitulo: ");
     limparBuffer();
     scanf("%m[^\n]", &subTitulo);
     limparBuffer();
     printf("PARA QUEBRA DE LINHA: \"<br>\"\n");
-    printf("Digite a descriÃ§Ã£o ('.' para parar): \n");
+    printf("Digite a descrição ('.' para parar): \n");
     scanf("%m[^.]", &descricaoToDo);
     limparBuffer();
 
     fprintf(toDo, "# %s\n## %s\n%s\n***", titulo, subTitulo, descricaoToDo);
-    fflush(toDo); // Libera as alteraÃ§Ãµes no arquivo
+    fflush(toDo); // Libera as alterações no arquivo
     fclose(toDo);
     toDo = fopen("tasks.md", "r+"); // Reabre o arquivo aqui para leitura e escrita, posicionando o cursor no final do arquivo
   } else {
@@ -71,7 +71,7 @@ FILE* novoTodo(FILE *toDo, int *tam, Task **ArrayTasks) {
   int numTarefas = *(tam);
   printf("Quantidade de tarefas: %d\n", numTarefas);
   for (int i = 0; i < numTarefas; i++) {
-    printf("Tarefa %d: %s (%s)\n", i + 1, (*ArrayTasks)[i].nometask, (*ArrayTasks)[i].concluido ? "ConcluÃ­da" : "NÃ£o concluÃ­da");
+    printf("Tarefa %d: %s (%s)\n", i + 1, (*ArrayTasks)[i].nometask, (*ArrayTasks)[i].concluido ? "Concluída" : "Não concluída");
   }
   return toDo;
 }
@@ -83,7 +83,7 @@ void addTask(FILE *arquivo, Task **ArrayTasks, int *quantTasks) {
 
   *ArrayTasks = (Task *)realloc(*ArrayTasks, (*quantTasks + 1) * sizeof(Task));
   if (*ArrayTasks == NULL) {
-    printf("Erro ao realocar memÃ³ria\n");
+    printf("Erro ao realocar memória\n");
     exit(1);
   }
 
@@ -109,7 +109,7 @@ void listarTasks(Task *ArrayTasks, int tamanho) {
 
 void alterarStatus(int indice, Task *ArrayTasks, int tamanho, FILE *arquivo) {
   if (indice < 0 || indice >= tamanho) {
-    printf("Ã�ndice invÃ¡lido\n");
+    printf("Índice inválido\n");
     return;
   }
 
@@ -118,7 +118,7 @@ void alterarStatus(int indice, Task *ArrayTasks, int tamanho, FILE *arquivo) {
   else
     ArrayTasks[indice].concluido = 0;
 
-  // Armazenar o conteÃºdo antes das tarefas
+  // Armazenar o conteúdo antes das tarefas
   char linha[256];
   char conteudoAntesDasTarefas[1024] = "";
   int encontrouLinhaHorizontal = 0;
@@ -152,14 +152,14 @@ void alterarStatus(int indice, Task *ArrayTasks, int tamanho, FILE *arquivo) {
 void removerTarefa(int indice, Task **ArrayTasks, int *quantTasks, FILE *arquivo) {
   indice--;
   if (indice < 0 || indice >= *quantTasks) {
-    printf("Ã�ndice invÃ¡lido\n");
+    printf("Índice inválido\n");
     return;
   }
 
-  // Liberar a memÃ³ria da tarefa a ser removida
+  // Liberar a memória da tarefa a ser removida
   free((*ArrayTasks)[indice].nometask);
 
-  // Deslocar as tarefas restantes para preencher o espaÃ§o vazio
+  // Deslocar as tarefas restantes para preencher o espaço vazio
   for (int i = indice; i < *quantTasks - 1; i++) {
     (*ArrayTasks)[i] = (*ArrayTasks)[i + 1];
   }
@@ -167,7 +167,7 @@ void removerTarefa(int indice, Task **ArrayTasks, int *quantTasks, FILE *arquivo
   // Reduzir o tamanho do array
   *ArrayTasks = (Task *)realloc(*ArrayTasks, (*quantTasks - 1) * sizeof(Task));
   if (*ArrayTasks == NULL && *quantTasks != 1) {
-    printf("Erro ao realocar memÃ³ria\n");
+    printf("Erro ao realocar memória\n");
     exit(1);
   }
 
@@ -182,14 +182,14 @@ void removerTarefa(int indice, Task **ArrayTasks, int *quantTasks, FILE *arquivo
   arquivo = fopen("tasks.md", "w");
   fclose(arquivo);
   arquivo = fopen("tasks.md", "r+");
-  fprintf(arquivo, "%s***\n", str); // Remove a linha extra na descriÃ§Ã£o
+  fprintf(arquivo, "%s***\n", str); // Remove a linha extra na descrição
   for (int i = 0; i < *quantTasks; i++) {
     if ((*ArrayTasks)[i].concluido == 0)
       fprintf(arquivo, "- [ ] %s", (*ArrayTasks)[i].nometask);
     else
       fprintf(arquivo, "- [x] %s", (*ArrayTasks)[i].nometask);
     if (i != *quantTasks - 1) {
-      fprintf(arquivo, "\n"); // Adiciona uma nova linha apenas se nÃ£o for a Ãºltima tarefa
+      fprintf(arquivo, "\n"); // Adiciona uma nova linha apenas se não for a última tarefa
     }
   }
   fflush(arquivo);
@@ -213,7 +213,7 @@ int main() {
   int opcaoEmToDo;
   toDo = novoTodo(toDo, &quantTasks, &ArrayTasks);
   do {
-    printf("Qual funÃ§Ã£o deseja acessar?\n1. Acessar To-Do List\n2. Sair\n");
+    printf("Qual função deseja acessar?\n1. Acessar To-Do List\n2. Sair\n");
     scanf("%d", &resp);
     switch (resp) {
     case 1:
@@ -225,13 +225,13 @@ int main() {
         fflush(toDo);
         break;
       case 2:
-        printf("Digite o Ã­ndice da task que deseja alterar o status: ");
+        printf("Digite o índice da task que deseja alterar o status: ");
         int indiceStatus;
         scanf("%d", &indiceStatus);
         alterarStatus(indiceStatus - 1, ArrayTasks, quantTasks, toDo);
         break;
       case 3:
-        printf("Digite o Ã­ndice da task que deseja remover: ");
+        printf("Digite o índice da task que deseja remover: ");
         int indiceRemover;
         scanf("%d", &indiceRemover);
         removerTarefa(indiceRemover, &ArrayTasks, &quantTasks, toDo);
@@ -242,14 +242,14 @@ int main() {
       case 5:
         break;
       default:
-        printf("OpÃ§Ã£o invÃ¡lida\n");
+        printf("Opção inválida\n");
       }
       break;
     case 2:
       printf("Encerrando programa...\n");
       break;
     default:
-      printf("OpÃ§Ã£o invÃ¡lida\n");
+      printf("Opção inválida\n");
     }
   } while (resp != 2);
 
