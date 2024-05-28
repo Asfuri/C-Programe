@@ -26,3 +26,5 @@ Para a vizualização do arquivo "Tasks.md" recomendamos a utilização da exten
 [Instalação **MarkdownViewer** navegador a **base de Chromium** e **Google Chrome**](https://chromewebstore.google.com/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk)
 
 [Instalação **MarkdownViewer** no **Mozilla Firefox**](https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer-chrome/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+
+[Instalação **MarkdownViewer** no **Sistema OS**](https://macdown.uranusjr.com/)
